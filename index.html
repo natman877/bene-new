@@ -9,22 +9,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
   <script>
-    tailwind.config = {
+     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            espresso: '#2C1810',
-            'espresso-light': '#4A3228',
-            ivory: '#FAF6F1',
-            'ivory-dark': '#F0E9E0',
-            terracotta: '#C45D3E',
-            'terracotta-dark': '#A84832',
-            gold: '#D4A574',
-            'gold-dark': '#B8895A',
-            cream: '#FFF8F0',
-            sage: '#8B9A7D',
-            border: '#E8DFD5',
-            muted: '#6B5A4E',
+            espresso: 'var(--espresso)',
+            'espresso-light': 'var(--espresso-light)',
+            ivory: 'var(--ivory)',
+            'ivory-dark': 'var(--ivory-dark)',
+            terracotta: 'var(--terracotta)',
+            'terracotta-dark': 'var(--terracotta-dark)',
+            cream: 'var(--cream)',
+            sage: 'var(--sage)',
+            gold: 'var(--gold)',
+            'gold-dark': 'var(--gold-muted)',
+            bg: 'var(--bg)',
+            'bg-subtle': 'var(--bg-subtle)',
+            fg: 'var(--fg)',
+            'fg-muted': 'var(--fg-muted)',
+            accent: 'var(--accent)',
+            'accent-hover': 'var(--accent-hover)',
+            card: 'var(--card)',
+            border: 'var(--border)',
+            muted: 'var(--fg-muted)',
           },
           fontFamily: {
             display: ['Fraunces', 'serif'],
@@ -35,10 +43,45 @@
     }
   </script>
   <style>
+    /* ========== DESIGN TOKENS ========== */
+    :root {
+      --espresso: #5b3838;
+      --espresso-light: #ffffff;
+      --ivory: #FAF6F1;
+      --ivory-dark: #F0E9E0;
+      --terracotta: #C45D3E;
+      --terracotta-dark: #A84832;
+      --cream: #FFF8F0;
+      --sage: #8B9A7D;
+      --gold: #D4A574;
+      --gold-muted: #FAF6F1;
+      --muted-raw: #6B5A4E;
+      --border-raw: #E8DFD5;
+      --bg: var(--cream);
+      --bg-subtle: var(--ivory);
+      --fg: var(--espresso);
+      --fg-muted: var(--muted-raw);
+      --accent: var(--terracotta);
+      --accent-hover: var(--terracotta-dark);
+      --card: #FFFFFF;
+      --border: var(--border-raw);
+      --overlay: rgba(255,255,255,0.5);
+    }
+    .dark {
+      --bg: #ffffff;
+      --bg-subtle: #ffffff;
+      --fg: var(--ivory);
+      --fg-muted: #A89888;
+      --accent: #D97A5C;
+      --accent-hover: var(--terracotta);
+      --card: #2A201A;
+      --border: #3D302A;
+      --overlay: rgba(0,0,0,0.6);
+    }
     /* ========== BASE STYLES ========== */
     :root {
       --bg: #FAF6F1;
-      --fg: #000000;
+      --fg: #000000e1;
       --muted: #6B5A4E;
       --accent: #C45D3E;
       --accent-hover: #A84832;
@@ -69,7 +112,7 @@
 
     /* ========== BACKGROUND PATTERNS ========== */
     .ethiopian-pattern {
-      background-image: url("image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30z' fill='none' stroke='%23D4A574' stroke-width='0.5' opacity='0.15'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30z' fill='none' stroke='%23D4A574' stroke-width='0.5' opacity='0.15'/%3E%3C/svg%3E");
       background-size: 30px 30px;
     }
 
@@ -178,14 +221,13 @@
 
     .btn-sm {
       padding: 0.5rem 1.25rem;
-      
       font-size: 0.875rem;
     }
 
     /* ========== NAVIGATION ========== */
     .nav-link {
       position: relative;
-      color: rgba(199, 115, 20, 0.7);
+      color: rgb(255, 255, 255);
       font-weight: 500;
       transition: color 0.3s;
       text-decoration: none;
@@ -408,6 +450,10 @@
     .slide-hero:nth-child(4) { animation-delay: 4s; }
     .slide-hero:nth-child(5) { animation-delay: 2s; }
     .slide-hero:nth-child(6) { animation-delay: 0s; }
+    .slide-hero:nth-child(7) { animation-delay: 1.5s; }
+    .slide-hero:nth-child(8) { animation-delay: 3s; }
+    .slide-hero:nth-child(9) { animation-delay: 4.5s; }
+    .slide-hero:nth-child(10) { animation-delay: 6s; }
 
     @keyframes cardCycle {
       0% { transform: translateZ(0) rotateX(0); z-index: 2; opacity: 1; }
@@ -528,7 +574,8 @@
     /* ========== LOGO ========== */
     .logo-img {
       height: auto;
-      max-height: 100%;
+      max-height: 200px;
+      width: 100%;
     }
 
     /* ========== SECTION UTILITIES ========== */
@@ -545,6 +592,108 @@
         padding: 8rem 1rem;
       }
     }
+
+    /* ========== PAYMENT METHOD CARDS (from image) ========== */
+    .payment-method-card {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid var(--border);
+      min-height: 180px;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .payment-method-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(44, 24, 16, 0.1);
+      border-color: transparent;
+    }
+    .payment-icon-wrap {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .payment-method-card .pm-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--espresso);
+      line-height: 1.3;
+    }
+    .payment-method-card .pm-subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .pm-telebirr .payment-icon-wrap {
+      background: rgba(16, 185, 129, 0.08);
+      color: #10B981;
+    }
+    .pm-cbe .payment-icon-wrap {
+      background: rgba(59, 130, 246, 0.08);
+      color: #3B82F6;
+    }
+    .pm-bank .payment-icon-wrap {
+      background: rgba(245, 158, 11, 0.08);
+      color: #F59E0B;
+    }
+    .pm-diaspora .payment-icon-wrap {
+      background: rgba(139, 92, 246, 0.08);
+      color: #8B5CF6;
+    }
+    .pm-etb .payment-icon-wrap {
+      background: rgba(239, 68, 68, 0.08);
+      color: #EF4444;
+    }
+    .pm-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #eee;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.pm-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  border-color: #ddd;
+}
+
+.pm-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.pm-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.pm-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #111;
+}
+
+.pm-sub {
+  font-size: 12px;
+  color: #666;
+}
   </style>
 </head>
 <body class="antialiased">
@@ -562,7 +711,7 @@
         <div class="hidden lg:flex items-center gap-8">
           <a href="#occasions" class="nav-link">
             <span class="text-en">Occasions</span>
-            <span class="text-am">አጋጣሚዎች</span>
+            <span class="text-am">አጋሚዎች</span>
           </a>
           <a href="#how-it-works" class="nav-link">
             <span class="text-en">How It Works</span>
@@ -673,7 +822,7 @@
         </h2>
         <p class="text-muted mt-2 text-sm">
           <span class="text-en">Log in to manage your gift lists</span>
-          <span class="text-am">የስጦታ ዝርዝሮችን ለማስተዳደር ይግቡ</span>
+          <span class="text-am">የስጦታ ርዝሮችን ለማስተዳደር ይግቡ</span>
         </p>
       </div>
       <form class="space-y-4" onsubmit="event.preventDefault(); closeModal('loginModal');">
@@ -774,7 +923,7 @@
           <label class="flex items-start gap-2 text-sm text-muted">
             <input type="checkbox" id="signupTerms" class="w-4 h-4 mt-0.5 rounded border-border text-terracotta focus:ring-terracotta" required>
             <span class="text-en">I agree to the <a href="#" class="text-terracotta hover:underline">Terms of Service</a> and <a href="#" class="text-terracotta hover:underline">Privacy Policy</a></span>
-            <span class="text-am"><a href="#" class="text-terracotta hover:underline">የአገልሎት ደን</a> እና <a href="#" class="text-terracotta hover:underline">የግላነት ፖሊሲ</a> ተስማምቻለሁ</span>
+            <span class="text-am"><a href="#" class="text-terracotta hover:underline">የአገልሎት ን</a> እና <a href="#" class="text-terracotta hover:underline">የግላነት ፖሊሲ</a> ተስማምቻለሁ</span>
           </label>
         </div>
         <button type="submit" class="w-full btn-primary py-3 rounded-full">
@@ -800,7 +949,7 @@
         <img src="Benenew-01.png" alt="Bene'nw Logo" class="h-16 w-auto mx-auto mb-3">
         <h2 class="font-display text-2xl font-semibold text-espresso">
           <span class="text-en">Reset password</span>
-          <span class="text-am">የይለፍ ቃል ዳግም ያስቀም</span>
+          <span class="text-am">የይለፍ ቃል ዳግም ስቀም</span>
         </h2>
         <p class="text-muted mt-2 text-sm">
           <span class="text-en">Enter your email and we'll send you a reset link</span>
@@ -834,7 +983,7 @@
         <img src="Benenew-01.png" alt="Bene'nw Logo" class="h-16 w-auto mx-auto mb-3">
         <h2 class="font-display text-2xl font-semibold text-espresso">
           <span class="text-en">Create your list</span>
-          <span class="text-am">ዝርዝርዎን ይፍሩ</span>
+          <span class="text-am">ዝርዝርን ይፍ</span>
         </h2>
       </div>
       <form class="space-y-4" onsubmit="event.preventDefault(); closeModal('createModal');">
@@ -846,10 +995,14 @@
           <select class="input-field" required>
             <option value="">Select occasion...</option>
             <option value="wedding">Wedding / ሰርግ</option>
-            <option value="baby">Baby / ልደት</option>
+            <option value="baby">Baby Shower / የሕፃን ልጽ</option>
+            <option value="newborn">Newborn Gift / የአዲስ ፃን ስጦታ</option>
             <option value="birthday">Birthday / ልደት በዓል</option>
             <option value="graduation">Graduation / ምረቃ</option>
             <option value="housewarming">Housewarming / አዲስ ቤት</option>
+            <option value="christmas">Christmas Gift / የገና ጦታ</option>
+            <option value="trip">Fund My Trip / ጉዞዬን ደግ</option>
+            <option value="justbecause">Just Because / ስለ ምንም ነገር</option>
             <option value="group">Group Fund / የቡድን ፈን</option>
             <option value="holiday">Holiday / በዓል</option>
           </select>
@@ -893,7 +1046,7 @@
         </h2>
         <p class="text-muted mt-2 text-sm">
           <span class="text-en">Search by name, occasion, or private invite code</span>
-          <span class="text-am">በስም፣ በአጣሚ ይም በግል ግብዣ ድ ይፈልጉ</span>
+          <span class="text-am">በስም፣ በአጣሚ ይም በል ግዣ ድ ይፈልጉ</span>
         </p>
       </div>
       <form class="space-y-4" onsubmit="event.preventDefault(); closeModal('searchModal');">
@@ -918,17 +1071,21 @@
           </label>
           <select class="input-field">
             <option value="">All occasions</option>
-            <option value="wedding">Wedding / ሰርግ</option>
+            <option value="wedding">Wedding / ሰር</option>
             <option value="baby">Baby / ልደት</option>
-            <option value="birthday">Birthday / ልደት በዓል</option>
+            <option value="newborn">Newborn Gift / የአዲስ ሕፃን ጦታ</option>
+            <option value="birthday">Birthday / ልደት በል</option>
             <option value="graduation">Graduation / ምረቃ</option>
             <option value="housewarming">Housewarming / አዲስ ቤት</option>
+            <option value="christmas">Christmas Gift / የገና ስጦታ</option>
+            <option value="trip">Fund My Trip / ጉዞዬን ደግፉ</option>
+            <option value="justbecause">Just Because / ስለ ንም ነር</option>
           </select>
         </div>
         <div>
           <label class="block text-sm font-medium text-muted mb-1">
             <span class="text-en">Invite Code (optional)</span>
-            <span class="text-am">የግብዣ ድ (አማራጭ)</span>
+            <span class="text-am">የግብ ድ (አማራጭ)</span>
           </label>
           <input type="text" placeholder="e.g., BEN-XXXX" class="input-field font-mono">
         </div>
@@ -959,7 +1116,7 @@
         </h2>
         <p class="text-muted mt-2 text-sm">
           <span class="text-en">Share with family and friends</span>
-          <span class="text-am">ከቤተሰብና ከጓኞች ጋር ያጋሩ</span>
+          <span class="text-am">ከቤተሰብና ከጓች ጋር ያጋሩ</span>
         </p>
       </div>
       <div class="space-y-4">
@@ -1057,16 +1214,16 @@
           </div>
           <h1 class="hero-animate font-display text-5xl sm:text-6xl lg:text-7xl font-semibold text-espresso leading-[1.08] tracking-tight">
             <span class="text-en">Create your gift list, <span class="text-terracotta">your way</span></span>
-            <span class="text-am">የስጦታ ዝርዝርዎን <span class="text-terracotta">በእርስዎ መንገድ</span> ይፍሩ</span>
+            <span class="text-am">የስጦታ ርዝርዎን <span class="text-terracotta">በእርስዎ መንገድ</span> ይፍሩ</span>
           </h1>
           <p class="hero-animate hero-delay-1 mt-6 text-xl text-espresso/65 max-w-xl mx-auto lg:mx-0 leading-relaxed">
             <span class="text-en">One beautiful link for weddings, babies, birthdays, graduations, and life's special moments. Add gifts from anywhere, collect support securely, and share with the people who matter most.</span>
-            <span class="text-am">ለሰርግ፣ ደት፣ ደት በዓል፣ ምረቃ አዲስ ቤት እና ለሌሎች ልዩ አጋጣሚዎች አንድ ውብ ሊንክ።</span>
+            <span class="text-am">ለሰርግ ደት ደት በዓል፣ ምረቃ አዲስ ቤት እና ለሌሎች ልዩ አጋጣሚዎች አንድ ውብ ንክ</span>
           </p>
           <div class="hero-animate hero-delay-2 mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <button onclick="openModal('signupModal')" class="btn-primary text-lg">
                <span class="text-en">Create Your List — It's Free</span>
-               <span class="text-am">ዝርዝር ይፍጠሩ — ነጻ ነው</span>
+               <span class="text-am">ዝርዝር ይፍሩ — ነ ነው</span>
             </button>
             <button onclick="openModal('searchModal')" class="btn-secondary text-lg">
                <span class="text-en">Find a List</span>
@@ -1092,7 +1249,7 @@
             <span class="trust-badge">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
               <span class="text-en">Diaspora-friendly</span>
-              <span class="text-am">ለዲያስፖራ ቹ</span>
+              <span class="text-am">ለዲያስፖ ቹ</span>
             </span>
           </div>
         </div>
@@ -1102,42 +1259,103 @@
           <div class="hero-gallery-container">
             <div class="gallery-title-small">
               <h3><span class="text-en">Celebrations on Bene'nw</span><span class="text-am">በBene'nw ላይ ያሉ ክረ በዓሎች</span></h3>
-              <p><span class="text-en">See how families celebrate together</span><span class="text-am">ቤተሰቦች እንዴት አብረው እንደሚያከብሩ ይመልከቱ</span></p>
+              <p><span class="text-en">See how families celebrate together</span><span class="text-am">ቤተሰቦች እንዴት አብረው እንደሚያከብሩ መልከቱ</span></p>
             </div>
             
-            <div class="slider-hero">
-              <div class="wrapper-hero">
-                <div class="slide-hero">
-                  <img src="images (2).jpg" alt="Wedding celebration">
-                  <div class="card-overlay"></div>
-                  <div class="card-label"><span class="text-en">Wedding 💍</span><span class="text-am">ሰርግ 💍</span></div>
-                </div>
-                <div class="slide-hero">
-                  <img src="download (7).jpg" alt="Baby celebration">
-                  <div class="card-overlay"></div>
-                  <div class="card-label"><span class="text-en">Baby 👶</span><span class="text-am">ልደት 👶</span></div>
-                </div>
-                <div class="slide-hero">
-                  <img src="download (8).jpg" alt="Birthday celebration">
-                  <div class="card-overlay"></div>
-                  <div class="card-label"><span class="text-en">Birthday 🎂</span><span class="text-am">ልደት በዓል 🎂</span></div>
-                </div>
-                <div class="slide-hero">
-                  <img src="download.jpg" alt="Graduation celebration">
-                  <div class="card-overlay"></div>
-                  <div class="card-label"><span class="text-en">Graduation 🎓</span><span class="text-am">ምረቃ </span></div>
-                </div>
-                <div class="slide-hero">
-                  <img src="download (1).jpg" alt="Housewarming celebration">
-                  <div class="card-overlay"></div>
-                  <div class="card-label"><span class="text-en">Housewarming 🏠</span><span class="text-am">አዲስ ቤት </span></div>
-                </div>
-                <div class="slide-hero">
-                  <img src="download (6).jpg" alt="Group contribution">
-                  <div class="card-overlay"></div>
-                  <div class="card-label"><span class="text-en">Group Fund 🎁</span><span class="text-am">የቡድን አስተዋፅኦ 🎁</span></div>
-                </div>
-              </div>
+           <div class="slider-hero">
+  <div class="wrapper-hero">
+    <!-- Wedding -->
+    <div class="slide-hero">
+      <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866" alt="Wedding celebration" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+      <div class="card-overlay"></div>
+      <div class="card-label">
+        <span class="text-en">Wedding 💍</span>
+        <span class="text-am">ሰር 💍</span>
+      </div>
+    </div>
+
+    <!-- Newborn Gift -->
+    <div class="slide-hero">
+      <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba" alt="Newborn gift" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+      <div class="card-overlay"></div>
+      <div class="card-label">
+        <span class="text-en">Newborn Gift 👶</span>
+        <span class="text-am">የአዲስ ሕፃን ጦታ </span>
+      </div>
+    </div>
+
+    <!-- Birthday -->
+    <div class="slide-hero">
+      <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3" alt="Birthday celebration" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+      <div class="card-overlay"></div>
+      <div class="card-label">
+        <span class="text-en">Birthday 🎂</span>
+        <span class="text-am">ልደት በዓል 🎂</span>
+      </div>
+    </div>
+
+    <!-- Graduation -->
+    <div class="slide-hero">
+      <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1" alt="Graduation celebration" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+      <div class="card-overlay"></div>
+      <div class="card-label">
+        <span class="text-en">Graduation 🎓</span>
+        <span class="text-am">ምረቃ 🎓</span>
+      </div>
+    </div>
+
+    <!-- Housewarming -->
+    <div class="slide-hero">
+      <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa" alt="Housewarming" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+      <div class="card-overlay"></div>
+      <div class="card-label">
+        <span class="text-en">Housewarming 🏠</span>
+        <span class="text-am">አዲስ ቤት </span>
+      </div>
+    </div>
+
+    <!-- Group Fund -->
+    <div class="slide-hero">
+      <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac" alt="Group fund" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+      <div class="card-overlay"></div>
+      <div class="card-label">
+        <span class="text-en">Group Fund 🎁</span>
+        <span class="text-am">የቡድን አስተዋፅኦ </span>
+      </div>
+    </div>
+
+    <!-- Fund My Trip -->
+    <div class="slide-hero">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Travel funding" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+      <div class="card-overlay"></div>
+      <div class="card-label">
+        <span class="text-en">Fund My Trip ✈️</span>
+        <span class="text-am">ጉዞን ደግ ✈️</span>
+      </div>
+    </div>
+
+    <!-- Christmas Gift -->
+    <div class="slide-hero">
+      <img src="https://images.unsplash.com/photo-1543589077-47d81606c1bf" alt="Christmas gift" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+      <div class="card-overlay"></div>
+      <div class="card-label">
+        <span class="text-en">Christmas Gift 🎄</span>
+        <span class="text-am">የገና ጦታ </span>
+      </div>
+    </div>
+
+    <!-- Just Because -->
+    <div class="slide-hero">
+      <img src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f" alt="Just because gift" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+      <div class="card-overlay"></div>
+      <div class="card-label">
+        <span class="text-en">Just Because 💝</span>
+        <span class="text-am">ስለ ምንም ገር 💝</span>
+      </div>
+    </div>
+
+  </div>
+</div>
             </div>
           </div>
         </div>
@@ -1179,7 +1397,7 @@
         <div class="flex items-center gap-16 px-8" aria-hidden="true">
           <div class="flex items-center gap-3 text-white/80">
             <span class="font-display text-3xl font-semibold text-gold">2,500+</span>
-            <span class="text-sm"><span class="text-en">Lists Created</span><span class="text-am">ዝርዝሮች ተፈጥረዋል</span></span>
+            <span class="text-sm"><span class="text-en">Lists Created</span><span class="text-am">ዝርዝሮች ተፈረዋል</span></span>
           </div>
           <div class="w-px h-8 bg-white/20"></div>
           <div class="flex items-center gap-3 text-white/80">
@@ -1221,7 +1439,7 @@
         </h2>
         <p class="reveal reveal-delay-1 mt-4 text-lg text-espresso/60 max-w-2xl mx-auto">
           <span class="text-en">Create a personalized list, add gifts or contribution goals, and send one link to friends and family.</span>
-          <span class="text-am">የእርስዎን የስጦታ ርዝር ይጠሩ፣ ስታዎችን ይም የገንዘብ አስተዋፅኦ ግቦችን ያክሉ እና በአን ሊንክ ወዳችዎ ያጋሩ።</span>
+          <span class="text-am">የእርስዎን የስጦታ ርዝር ይሩ፣ ታዎችን ይም የገንዘብ አስተዋፅኦ ቦችን ያክሉ እና በአን ሊንክ ወዳችዎ ያጋሩ።</span>
         </p>
       </div>
 
@@ -1233,8 +1451,8 @@
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
             </div>
             <div class="font-display text-sm font-semibold text-terracotta mb-2"><span class="text-en">Step 1</span><span class="text-am">ደረጃ 1</span></div>
-            <h3 class="font-display text-xl font-semibold text-espresso mb-3"><span class="text-en">Create</span><span class="text-am">ይፍሩ</span></h3>
-            <p class="text-espresso/60"><span class="text-en">Open your list and choose your occasion.</span><span class="text-am">ዝርዝርዎን ይክፈቱ እና አጋሚን ይምረጡ</span></p>
+            <h3 class="font-display text-xl font-semibold text-espresso mb-3"><span class="text-en">Create</span><span class="text-am">ይፍ</span></h3>
+            <p class="text-espresso/60"><span class="text-en">Open your list and choose your occasion.</span><span class="text-am">ዝርዝርዎን ይክቱ እና አሚን ይምረጡ</span></p>
           </div>
         </div>
         <!-- Step 2 -->
@@ -1245,7 +1463,7 @@
             </div>
             <div class="font-display text-sm font-semibold text-gold-dark mb-2"><span class="text-en">Step 2</span><span class="text-am">ደረጃ 2</span></div>
             <h3 class="font-display text-xl font-semibold text-espresso mb-3"><span class="text-en">Add</span><span class="text-am">ያክሉ</span></h3>
-            <p class="text-espresso/60"><span class="text-en">Add gifts, contribution goals, or personal wishes from anywhere.</span><span class="text-am">ስጦታችን፣ የንዘብ አስተዋፅኦ ቦችን ወይም ግላዊ ምኞቶችን ያክሉ።</span></p>
+            <p class="text-espresso/60"><span class="text-en">Add gifts, contribution goals, or personal wishes from anywhere.</span><span class="text-am">ስጦታችን፣ የንዘብ አስተዋፅኦ ችን ወይም ግላዊ ኞቶችን ያክሉ።</span></p>
           </div>
         </div>
         <!-- Step 3 -->
@@ -1256,7 +1474,7 @@
             </div>
             <div class="font-display text-sm font-semibold text-sage mb-2"><span class="text-en">Step 3</span><span class="text-am">ደረ 3</span></div>
             <h3 class="font-display text-xl font-semibold text-espresso mb-3"><span class="text-en">Share</span><span class="text-am">ያጋሩ</span></h3>
-            <p class="text-espresso/60"><span class="text-en">Send your list through WhatsApp, Telegram, email, or QR code.</span><span class="text-am">ዝርዝርዎን በWhatsApp፣ Telegram ኢሜይል ወይም QR ኮድ ያሩ።</span></p>
+            <p class="text-espresso/60"><span class="text-en">Send your list through WhatsApp, Telegram, email, or QR code.</span><span class="text-am">ዝርዝርዎን በWhatsApp፣ Telegram ሜይል ወይም QR ኮድ ሩ።</span></p>
           </div>
         </div>
         <!-- Step 4 -->
@@ -1267,7 +1485,7 @@
             </div>
             <div class="font-display text-sm font-semibold text-espresso mb-2"><span class="text-en">Step 4</span><span class="text-am">ደረ 4</span></div>
             <h3 class="font-display text-xl font-semibold text-espresso mb-3"><span class="text-en">Receive</span><span class="text-am">ተቀበሉ</span></h3>
-            <p class="text-espresso/60"><span class="text-en">Track gifts and contributions in one simple dashboard.</span><span class="text-am">ስጦታችን እና አስተዋፅኦችን በአንድ ቀላል ዳሽቦርድ ይከታተሉ።</span></p>
+            <p class="text-espresso/60"><span class="text-en">Track gifts and contributions in one simple dashboard.</span><span class="text-am">ስጦታችን እና አስተዋፅኦችን በአንድ ቀላል ዳሽርድ ይታተሉ</span></p>
           </div>
         </div>
       </div>
@@ -1289,7 +1507,7 @@
         </h2>
         <p class="reveal reveal-delay-1 mt-4 text-lg text-espresso/60 max-w-2xl mx-auto">
           <span class="text-en">From weddings and births to birthdays, graduations, and housewarmings — collect the gifts and support that matter most.</span>
-          <span class="text-am">ከሰርግና ልደት እስከ ልደት በዓል፣ ምረቃና አዲስ ቤት — የሚያስፈልጉትን ስጦታዎችና ድጋፍ ሰብስቡ።</span>
+          <span class="text-am">ከሰርግና ልት እስከ ደት በዓል፣ ረቃና አስ ቤት — የያስፈልጉትን ስታዎችና ድጋፍ ሰብስቡ።</span>
         </p>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1299,7 +1517,7 @@
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C45D3E" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </div>
           <h3 class="font-display text-xl font-semibold text-espresso mb-2"><span class="text-en">Wedding Registry</span><span class="text-am">የሰርግ ዝርዝር</span></h3>
-          <p class="text-espresso/60 text-sm"><span class="text-en">Create a list for your new chapter — from home essentials to honeymoon support.</span><span class="text-am">ለአዲሱ ምዕራፍ ዝርዝር ይፍሩ — ከቤት እቃዎች እስከ ማር ጋፍ</span></p>
+          <p class="text-espresso/60 text-sm"><span class="text-en">Create a list for your new chapter — from home essentials to honeymoon support.</span><span class="text-am">ለአዲሱ ዕራ ዝርዝር ይፍ — ከቤት እቃዎች እስከ ማር ፍ</span></p>
         </a>
         <!-- Baby -->
         <a href="#" onclick="openModal('createModal'); return false;" class="reveal reveal-delay-2 occasion-card group">
@@ -1315,7 +1533,7 @@
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8B9A7D" stroke-width="2"><path d="M8 2v4"/><path d="M16 2v4"/><path d="M21 13V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6"/></svg>
           </div>
           <h3 class="font-display text-xl font-semibold text-espresso mb-2"><span class="text-en">Birthday Wishlist</span><span class="text-am">የልደት በዓል ምር</span></h3>
-          <p class="text-espresso/60 text-sm"><span class="text-en">Make birthdays easier with a shareable wishlist your friends and family can actually use.</span><span class="text-am">ልደት በዓልን ቀላል ያድርጉት — ጓደኞችና ቤተሰብ የሚጠቀሙበት ዝርዝር ያጋሩ።</span></p>
+          <p class="text-espresso/60 text-sm"><span class="text-en">Make birthdays easier with a shareable wishlist your friends and family can actually use.</span><span class="text-am">ልደት በዓልን ቀላል ያድርት — ጓደኞችና ቤተሰብ የሚጠቀሙበት ዝርዝር ያጋሩ</span></p>
         </a>
         <!-- Graduation -->
         <a href="#" onclick="openModal('createModal'); return false;" class="reveal reveal-delay-4 occasion-card group">
@@ -1323,7 +1541,7 @@
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2C1810" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
           </div>
           <h3 class="font-display text-xl font-semibold text-espresso mb-2"><span class="text-en">Graduation List</span><span class="text-am">የምረቃ ዝርዝር</span></h3>
-          <p class="text-espresso/60 text-sm"><span class="text-en">Celebrate achievement with gifts, tools, and support for the next step.</span><span class="text-am">ስኬትን በስጦታዎች፣ በመሳሪያዎችና በድጋፍ ያክሩ።</span></p>
+          <p class="text-espresso/60 text-sm"><span class="text-en">Celebrate achievement with gifts, tools, and support for the next step.</span><span class="text-am">ስኬትን በስጦታዎች፣ በመሳሪያዎችና በድጋ ያክሩ</span></p>
         </a>
         <!-- Housewarming -->
         <a href="#" onclick="openModal('createModal'); return false;" class="reveal reveal-delay-5 occasion-card group">
@@ -1331,7 +1549,7 @@
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C45D3E" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           </div>
           <h3 class="font-display text-xl font-semibold text-espresso mb-2"><span class="text-en">Housewarming</span><span class="text-am">አዲስ ቤት</span></h3>
-          <p class="text-espresso/60 text-sm"><span class="text-en">Build your new space with thoughtful gifts and contributions from loved ones.</span><span class="text-am">አዲሱን ቤትዎን ከወጆችና ከቤተሰብ ጦታች ጋር ገንቡ</span></p>
+          <p class="text-espresso/60 text-sm"><span class="text-en">Build your new space with thoughtful gifts and contributions from loved ones.</span><span class="text-am">አዲሱን ቤትዎን ወጆችና ከቤተሰብ ታች ጋር ገንቡ</span></p>
         </a>
         <!-- Group Contribution -->
         <a href="#" onclick="openModal('createModal'); return false;" class="reveal reveal-delay-6 occasion-card group">
@@ -1339,7 +1557,39 @@
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
           <h3 class="font-display text-xl font-semibold text-espresso mb-2"><span class="text-en">Group Contribution</span><span class="text-am">የቡድን አስተዋፅኦ</span></h3>
-          <p class="text-espresso/60 text-sm"><span class="text-en">Create a shared goal — a trip, project fund, gift pool, or personal milestone.</span><span class="text-am">የጋራ ግብ ፍጠ — ጉዞ ፕሮክት ፈንድ፣ የስታ ፑል ወይም ግላዊ ኬት</span></p>
+          <p class="text-espresso/60 text-sm"><span class="text-en">Create a shared goal — a trip, project fund, gift pool, or personal milestone.</span><span class="text-am">የጋራ ግብ ፍ — ጉዞ ፕሮት ፈንድ፣ የስታ ፑል ወይም ግላዊ ኬት</span></p>
+        </a>
+        <!-- Fund My Trip -->
+        <a href="#" onclick="openModal('createModal'); return false;" class="reveal reveal-delay-7 occasion-card group">
+          <div class="w-14 h-14 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.49 10-10S17.51 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          </div>
+          <h3 class="font-display text-xl font-semibold text-espresso mb-2"><span class="text-en">Fund My Trip</span><span class="text-am">ጉዞዬን ደፉ</span></h3>
+          <p class="text-espresso/60 text-sm"><span class="text-en">Crowdfund your dream vacation, pilgrimage, or study abroad experience.</span><span class="text-am">የህልም ጉዞዎን ጥገኛ ወይም የውጭ ሀገር ትምርትዎን ያስተዋፅ</span></p>
+        </a>
+        <!-- Christmas Gift -->
+        <a href="#" onclick="openModal('createModal'); return false;" class="reveal reveal-delay-8 occasion-card group">
+          <div class="w-14 h-14 bg-gradient-to-br from-red-500/10 to-green-500/10 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3 class="font-display text-xl font-semibold text-espresso mb-2"><span class="text-en">Christmas Gift</span><span class="text-am">የገና ስጦታ</span></h3>
+          <p class="text-espresso/60 text-sm"><span class="text-en">Create a wishlist for Christmas and let loved ones know what you truly want.</span><span class="text-am">ለገና የስጦታ ዝር ፍጠ እና ተቦችዎ ን እንደልጉ ያሳውቁ</span></p>
+        </a>
+        <!-- Newborn Gift -->
+        <a href="#" onclick="openModal('createModal'); return false;" class="reveal reveal-delay-9 occasion-card group">
+          <div class="w-14 h-14 bg-gradient-to-br from-pink-500/10 to-rose-500/10 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </div>
+          <h3 class="font-display text-xl font-semibold text-espresso mb-2"><span class="text-en">Newborn Gift</span><span class="text-am">የአዲስ ሕን ስታ</span></h3>
+          <p class="text-espresso/60 text-sm"><span class="text-en">Welcome your new baby with essential items and support from family.</span><span class="text-am">አዲሱን ሕፃንን ከተሰብ ጋፍ እና አስፈላጊ እቃዎች ር ይቀበሉ</span></p>
+        </a>
+        <!-- Just Because -->
+        <a href="#" onclick="openModal('createModal'); return false;" class="reveal reveal-delay-10 occasion-card group">
+          <div class="w-14 h-14 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3 class="font-display text-xl font-semibold text-espresso mb-2"><span class="text-en">Just Because</span><span class="text-am">ስለ ምንም ገር</span></h3>
+          <p class="text-espresso/60 text-sm"><span class="text-en">No special occasion needed — celebrate life, friendship, or simply treat yourself.</span><span class="text-am">ልዩ አጋሚ አያስልግም — ህይወትን፣ ደኝነትን ያክብሩ ወይም ራስዎን ይሸልሙ።</span></p>
         </a>
       </div>
     </div>
@@ -1355,11 +1605,11 @@
         </div>
         <h2 class="reveal font-display text-4xl sm:text-5xl font-semibold text-espresso">
           <span class="text-en">Not tied to one store. Not limited to one idea.</span>
-          <span class="text-am">ለአንድ ሱቅ አይገደቡ ለአንድ ሀሳብ አይወሰኑ።</span>
+          <span class="text-am">ለአንድ ሱቅ አይገቡ አንድ ሳብ አይወሰኑ።</span>
         </h2>
         <p class="reveal reveal-delay-1 mt-4 text-lg text-espresso/60 max-w-2xl mx-auto">
           <span class="text-en">Add products, cash contributions, shared goals, or even meaningful experiences. Your list should reflect your life, not someone else's catalog.</span>
-          <span class="text-am">ምርቶችን፣ የንዘብ አስተዋፅኦ የጋራ ግቦች ይም ትርም ያላቸው ልምዶች ያክሉ።</span>
+          <span class="text-am">ምርቶችን፣ የንዘብ አስተዋፅኦ የጋራ ግቦች ይም ርም ያላው ልምዶች ያክ።</span>
         </p>
       </div>
 
@@ -1368,7 +1618,7 @@
           <div class="w-16 h-16 mx-auto bg-terracotta/10 rounded-2xl flex items-center justify-center mb-4">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C45D3E" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
           </div>
-          <h3 class="font-display text-xl font-semibold text-espresso mb-2"><span class="text-en">Add Gifts from Any Store</span><span class="text-am">ከማንኛውም ሱቅ ስጦታ ያሉ</span></h3>
+          <h3 class="font-display text-xl font-semibold text-espresso mb-2"><span class="text-en">Add Gifts from Any Store</span><span class="text-am">ከማንኛውም ሱቅ ስታ ያሉ</span></h3>
           <p class="text-espresso/60 text-sm"><span class="text-en">Paste a product link or add custom items. No store restrictions.</span><span class="text-am">የምርት ሊን ይለፉ ወይም ብጁ ቃዎች ያክሉ።</span></p>
         </div>
         <div class="reveal reveal-delay-2 feature-card text-center">
@@ -1376,21 +1626,21 @@
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
           </div>
           <h3 class="font-display text-xl font-semibold text-espresso mb-2"><span class="text-en">Cash Goals & Contributions</span><span class="text-am">የገንዘብ ግቦችና አስተዋፅኦ</span></h3>
-          <p class="text-espresso/60 text-sm"><span class="text-en">Set funding goals for weddings, travel, education, or any project.</span><span class="text-am">ለሰርግ፣ ዞ፣ ትምህርት ወይም ማንኛውም ፕሮጀክት የገንዘብ ግብ ያስቀምጡ</span></p>
+          <p class="text-espresso/60 text-sm"><span class="text-en">Set funding goals for weddings, travel, education, or any project.</span><span class="text-am">ለሰርግ ዞ፣ ትምህርት ወይም ማንኛውም ፕሮክት የገንዘብ ብ ያስቀምጡ</span></p>
         </div>
         <div class="reveal reveal-delay-3 feature-card text-center">
           <div class="w-16 h-16 mx-auto bg-sage/10 rounded-2xl flex items-center justify-center mb-4">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8B9A7D" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </div>
           <h3 class="font-display text-xl font-semibold text-espresso mb-2"><span class="text-en">Custom Ideas & Experiences</span><span class="text-am">ብጁ ሳቦችና ምዶች</span></h3>
-          <p class="text-espresso/60 text-sm"><span class="text-en">Add experiences, services, or anything that matters to you.</span><span class="text-am">ልምዶችን አገልግሎቶችን ወይም ለእርስዎ ጠቃሚ ማንኛውንም ነገር ያክሉ</span></p>
+          <p class="text-espresso/60 text-sm"><span class="text-en">Add experiences, services, or anything that matters to you.</span><span class="text-am">ልምዶችን አገልግሎቶችን ይም ለእርስዎ ጠቃሚ ማንኛውንም ነገር ክሉ</span></p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== BUILT FOR ETHIOPIA ========== -->
-  <section class="py-24 lg:py-32 bg-gradient-to-b from-ivory to-ivory-dark relative overflow-hidden">
+  <!-- ========== BUILT FOR ETHIOPIA - PAYMENT METHODS (from image) ========== -->
+  <section class="py-24 lg:py-32 relative overflow-hidden" id="payment-methods">
     <div class="absolute inset-0 ethiopian-pattern opacity-20" aria-hidden="true"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
@@ -1400,165 +1650,96 @@
         </div>
         <h2 class="reveal font-display text-4xl sm:text-5xl font-semibold text-espresso">
           <span class="text-en">Designed for how Ethiopia gives</span>
-          <span class="text-am">ለኢትዮጵያ አቀራረብ የተሰራ</span>
+          <span class="text-am">ለኢትዮጵያ አቀራብ የተሰ</span>
         </h2>
         <p class="reveal reveal-delay-1 mt-4 text-lg text-espresso/60 max-w-2xl mx-auto">
           <span class="text-en">Built for mobile, local payments, and modern sharing. Easy for loved ones in Ethiopia — and easy for supporters abroad too.</span>
-          <span class="text-am">ለሞባይል፣ ለአባቢያዊ ክፍያዎችና ለዘመና ማጋት የተሰ።</span>
+          <span class="text-am">ለሞባይል፣ ለአቢያዊ ክፍያዎችና ለዘመና ማጋት የተሰ</span>
         </p>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
-        <div class="reveal reveal-delay-1 feature-card text-center">
-          <div class="w-12 h-12 mx-auto bg-green-50 rounded-xl flex items-center justify-center mb-3">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M12 14h.01"/><path d="M2 10h20"/></svg>
-          </div>
-          <h3 class="font-semibold text-espresso mb-1 text-sm"><span class="text-en">telebirr</span><span class="text-am">ቴሌብር</span></h3>
-          <p class="text-espresso/50 text-xs"><span class="text-en">Mobile payments</span><span class="text-am">ሞባይል ክፍያ</span></p>
-        </div>
-        <div class="reveal reveal-delay-2 feature-card text-center">
-          <div class="w-12 h-12 mx-auto bg-blue-50 rounded-xl flex items-center justify-center mb-3">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2"><path d="M3 3h18v18H3zM12 8v8M8 12h8"/></svg>
-          </div>
-          <h3 class="font-semibold text-espresso mb-1 text-sm"><span class="text-en">CBE Birr</span><span class="text-am">ንግድ ብር</span></h3>
-          <p class="text-espresso/50 text-xs"><span class="text-en">Bank mobile</span><span class="text-am">ባንክ ሞባይል</span></p>
-        </div>
-        <div class="reveal reveal-delay-3 feature-card text-center">
-          <div class="w-12 h-12 mx-auto bg-amber-50 rounded-xl flex items-center justify-center mb-3">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <h3 class="font-semibold text-espresso mb-1 text-sm"><span class="text-en">Bank Transfer</span><span class="text-am">የባንክ ዝውውር</span></h3>
-          <p class="text-espresso/50 text-xs"><span class="text-en">Direct deposit</span><span class="text-am">ቀጥተኛ ተቀማጭ</span></p>
-        </div>
-        <div class="reveal reveal-delay-4 feature-card text-center">
-          <div class="w-12 h-12 mx-auto bg-purple-50 rounded-xl flex items-center justify-center mb-3">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </div>
-          <h3 class="font-semibold text-espresso mb-1 text-sm"><span class="text-en">Diaspora Support</span><span class="text-am">ዲያስራ ድፍ</span></h3>
-          <p class="text-espresso/50 text-xs"><span class="text-en">International</span><span class="text-am">ዓለም አቀፍ</span></p>
-        </div>
-        <div class="reveal reveal-delay-5 feature-card text-center">
-          <div class="w-12 h-12 mx-auto bg-red-50 rounded-xl flex items-center justify-center mb-3">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
-          </div>
-          <h3 class="font-semibold text-espresso mb-1 text-sm"><span class="text-en">ETB Pricing</span><span class="text-am">ብር ዋጋ</span></h3>
-          <p class="text-espresso/50 text-xs"><span class="text-en">Local currency</span><span class="text-am">የአካባቢ ገንዘብ</span></p>
+      <!-- Payment Methods Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+
+    <!-- Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
+
+      <!-- telebirr -->
+      <div class="pm-card">
+        <img src="download (6).jpg" alt="telebirr" class="pm-logo">
+        <div class="pm-text">
+          <p class="pm-title">telebirr</p>
+          <p class="pm-sub">ቴሌብር • Mobile payments</p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ========== DASHBOARD PREVIEW ========== -->
-  <section class="py-24 lg:py-32 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <div class="reveal">
-          <div class="inline-flex items-center gap-2 px-4 py-2 bg-terracotta/10 rounded-full text-terracotta text-sm font-semibold mb-4">
-            <span class="text-en">Your Dashboard</span>
-            <span class="text-am">ዳሽቦርድዎ</span>
+      <!-- CBE Birr -->
+      <div class="pm-card">
+        <img src="download (7).jpg" alt="CBE Birr" class="pm-logo">
+        <div class="pm-text">
+          <p class="pm-title">CBE Birr</p>
+          <p class="pm-sub">ንግድ ብር • Bank mobile</p>
+        </div>
+      </div>
+
+     <!-- Bank Transfer -->
+        <div class="payment-method-card pm-bank">
+          <div class="payment-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
           </div>
-          <h2 class="font-display text-4xl sm:text-5xl font-semibold text-espresso mb-4">
-            <span class="text-en">Everything in one place</span>
-            <span class="text-am">ሁሉም ነገር በአንድ ቦታ</span>
-          </h2>
-          <p class="text-espresso/60 text-lg mb-8">
-            <span class="text-en">Track contributions, manage gifts, send thank-you notes, and share your list — all from a beautiful, simple dashboard.</span>
-            <span class="text-am">አስተዋፅኦዎችን ከታተሉ፣ ስታዎችን ስተዳድሩ፣ የምስጋና መልዕክች ይላ፣ ዝርዝርዎን ያጋሩ</span>
-          </p>
-          <div class="space-y-4">
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 bg-terracotta/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C45D3E" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <span class="text-espresso/70"><span class="text-en">Real-time contribution tracking</span><span class="text-am">በቀጥታ አስተዋፅኦ ትትል</span></span>
+          <div>
+            <div class="pm-title">
+              <span class="text-en">Bank Transfer</span>
+              <span class="text-am">የባንክ ዝውውር</span>
             </div>
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 bg-terracotta/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C45D3E" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <span class="text-espresso/70"><span class="text-en">Gift reservation management</span><span class="text-am">የስጦታ ሪዘርቬሽን አስተዳደር</span></span>
+            <div class="pm-subtitle">
+              <span class="text-en">Direct deposit</span>
+              <span class="text-am">ቀጥተኛ ተቀማጭ</span>
             </div>
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 bg-terracotta/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C45D3E" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <span class="text-espresso/70"><span class="text-en">WhatsApp & Telegram sharing</span><span class="text-am">WhatsApp & Telegram ማጋራት</span></span>
-            </div>
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 bg-terracotta/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C45D3E" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <span class="text-espresso/70"><span class="text-en">Thank-you messages & guest list</span><span class="text-am">የምስጋና መልዕክቶችና የእንግዶች ዝርዝር</span></span>
-            </div>
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 bg-terracotta/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C45D3E" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <span class="text-espresso/70"><span class="text-en">Payout to your bank or mobile wallet</span><span class="text-am">ወደ ንክ ወይም ሞባይል ዋሌት ክፍያ</span></span>
-            </div>
-          </div>
-          <div class="mt-8">
-            <button onclick="openModal('signupModal')" class="btn-primary">
-              <span class="text-en">Get Started Free</span>
-              <span class="text-am">ነጻ ይጀምሩ</span>
-            </button>
           </div>
         </div>
 
-        <div class="reveal reveal-delay-2">
-          <div class="dashboard-preview">
-            <div class="flex items-center justify-between mb-6">
-              <div>
-                <h3 class="font-display text-lg font-semibold">Abebe & Sara's Wedding</h3>
-                <p class="text-white/50 text-sm">June 15, 2026 · Addis Ababa</p>
-              </div>
-              <button onclick="openModal('shareModal')" class="px-3 py-1.5 bg-white/10 rounded-lg text-sm hover:bg-white/20 transition-colors">
-                <span class="text-en">Share</span>
-              </button>
+        <!-- Diaspora Support -->
+        <div class="payment-method-card pm-diaspora">
+          <div class="payment-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M2 12h20"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="pm-title">
+              <span class="text-en">Diaspora Support</span>
+              <span class="text-am">ዲያስፖራ ድጋፍ</span>
             </div>
-            <div class="grid grid-cols-2 gap-4 mb-6">
-              <div class="bg-white/10 rounded-xl p-4">
-                <p class="text-white/50 text-xs mb-1"><span class="text-en">Total Received</span><span class="text-am">ጠቅላ</span></p>
-                <p class="text-2xl font-bold">45,200 <span class="text-sm font-normal text-white/50">ETB</span></p>
-              </div>
-              <div class="bg-white/10 rounded-xl p-4">
-                <p class="text-white/50 text-xs mb-1"><span class="text-en">Goal Progress</span><span class="text-am">የግብ ሂደት</span></p>
-                <p class="text-2xl font-bold">75%</p>
-              </div>
-              <div class="bg-white/10 rounded-xl p-4">
-                <p class="text-white/50 text-xs mb-1"><span class="text-en">Gifts Reserved</span><span class="text-am">የተያዙ ጦታች</span></p>
-                <p class="text-2xl font-bold">12</p>
-              </div>
-              <div class="bg-white/10 rounded-xl p-4">
-                <p class="text-white/50 text-xs mb-1"><span class="text-en">Contributors</span><span class="text-am">አስተዋጽኦ አድራጊዎች</span></p>
-                <p class="text-2xl font-bold">28</p>
-              </div>
+            <div class="pm-subtitle">
+              <span class="text-en">International</span>
+              <span class="text-am">ዓለም አቀፍ</span>
             </div>
-            <div class="bg-white/5 rounded-xl p-4">
-              <p class="text-white/50 text-xs mb-3"><span class="text-en">Recent Activity</span><span class="text-am">የቅርብ ጊዜ</span></p>
-              <div class="space-y-3">
-                <div class="flex items-center justify-between text-sm">
-                  <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center text-green-400 text-xs font-bold">T</div>
-                    <span>Tigist contributed</span>
-                  </div>
-                  <span class="font-semibold">2,000 ETB</span>
-                </div>
-                <div class="flex items-center justify-between text-sm">
-                  <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center text-blue-400 text-xs font-bold">D</div>
-                    <span>Daniel reserved a gift</span>
-                  </div>
-                  <span class="text-white/50">Coffee Set</span>
-                </div>
-                <div class="flex items-center justify-between text-sm">
-                  <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center text-purple-400 text-xs font-bold">M</div>
-                    <span>Meron contributed</span>
-                  </div>
-                  <span class="font-semibold">1,500 ETB</span>
-                </div>
-              </div>
+          </div>
+        </div>
+
+        <!-- ETB Pricing -->
+        <div class="payment-method-card pm-etb">
+          <div class="payment-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 11a9 9 0 0 1 9 9"/>
+              <path d="M4 4a16 16 0 0 1 16 16"/>
+              <circle cx="5" cy="19" r="1.5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="pm-title">
+              <span class="text-en">ETB Pricing</span>
+              <span class="text-am">ብር ዋጋ</span>
+            </div>
+            <div class="pm-subtitle">
+              <span class="text-en">Local currency</span>
+              <span class="text-am">የአካባቢ ገንዘብ</span>
             </div>
           </div>
         </div>
@@ -1636,79 +1817,7 @@
     </div>
   </section>
 
-  <!-- ========== FOR VENDORS ========== -->
-  <section class="py-24 lg:py-32 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <div class="reveal">
-          <div class="inline-flex items-center gap-2 px-4 py-2 bg-gold/10 rounded-full text-gold-dark text-sm font-semibold mb-4">
-            <span class="text-en">For Vendors & Shops</span>
-            <span class="text-am">ለሻጮችና ሱቆች</span>
-          </div>
-          <h2 class="font-display text-4xl sm:text-5xl font-semibold text-espresso mb-4">
-            <span class="text-en">Grow your business with Bene'nw</span>
-            <span class="text-am">ንግድን ከBene'nw ጋር ያሳድጉ</span>
-          </h2>
-          <p class="text-espresso/60 text-lg mb-8">
-            <span class="text-en">List your products on Bene'nw and reach thousands of Ethiopian families creating gift registries. Simple onboarding, no technical skills needed.</span>
-            <span class="text-am">ምርቶችዎን በBene'nw ይዘርዝሩ እና ሺዎች የኢትዮጵያ ተሰቦችን ይድረሱ። ቀላል ምዝገባ።</span>
-          </p>
-          <div class="space-y-3 mb-8">
-            <div class="flex items-center gap-3">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C45D3E" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              <span class="text-espresso/70"><span class="text-en">Reach engaged couples & families</span><span class="text-am">ሰር እና ቤተቦችን ይረሱ</span></span>
-            </div>
-            <div class="flex items-center gap-3">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C45D3E" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              <span class="text-espresso/70"><span class="text-en">Simple product listing dashboard</span><span class="text-am">ቀላል የምርት ዝርዝር ዳሽቦርድ</span></span>
-            </div>
-            <div class="flex items-center gap-3">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C45D3E" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              <span class="text-espresso/70"><span class="text-en">No upfront costs</span><span class="text-am">ቅድመ ክፍያ የለም</span></span>
-            </div>
-          </div>
-          <button onclick="openModal('contactModal')" class="btn-secondary">
-            <span class="text-en">Register as Vendor</span>
-            <span class="text-am">እንደ ጭ ይመዝገቡ</span>
-          </button>
-        </div>
-
-        <div class="reveal reveal-delay-2">
-          <div class="bg-white rounded-2xl border border-border p-8 shadow-lg">
-            <div class="text-center mb-6">
-              <div class="w-16 h-16 mx-auto bg-gold/10 rounded-2xl flex items-center justify-center mb-4">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-              </div>
-              <h3 class="font-display text-xl font-semibold text-espresso"><span class="text-en">Vendor Benefits</span><span class="text-am">የሻጭ ጥቅሞች</span></h3>
-            </div>
-            <div class="space-y-4">
-              <div class="flex items-start gap-3 p-3 bg-ivory rounded-xl">
-                <span class="text-2xl">📦</span>
-                <div>
-                  <p class="font-semibold text-sm text-espresso"><span class="text-en">Product Visibility</span><span class="text-am">የምርት ታይነት</span></p>
-                  <p class="text-xs text-muted"><span class="text-en">Your products appear in relevant gift lists</span><span class="text-am">ምርቶችዎ በተገቢ የስጦታ ዝርዝሮች ውስጥ ይታያሉ</span></p>
-                </div>
-              </div>
-              <div class="flex items-start gap-3 p-3 bg-ivory rounded-xl">
-                <span class="text-2xl">📊</span>
-                <div>
-                  <p class="font-semibold text-sm text-espresso"><span class="text-en">Sales Analytics</span><span class="text-am">የሽያጭ ንተና</span></p>
-                  <p class="text-xs text-muted"><span class="text-en">Track which products are most popular</span><span class="text-am">ትልቅ ተወዳጅ የሆኑ ምርቶችን ይከታተሉ</span></p>
-                </div>
-              </div>
-              <div class="flex items-start gap-3 p-3 bg-ivory rounded-xl">
-                <span class="text-2xl">🤝</span>
-                <div>
-                  <p class="font-semibold text-sm text-espresso"><span class="text-en">Direct Customer Connection</span><span class="text-am">ቀጥተኛ ደንበ ግንኙነት</span></p>
-                  <p class="text-xs text-muted"><span class="text-en">Connect with customers planning events</span><span class="text-am">ክስተቶችን ከሚያቅዱ ደንበኞች ጋር ይገናኙ</span></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- ========== TRUST & SECURITY ========== -->
   <section class="py-24 lg:py-32 bg-gradient-to-b from-ivory to-ivory-dark relative overflow-hidden">
@@ -1725,7 +1834,7 @@
         </h2>
         <p class="reveal reveal-delay-1 mt-4 text-lg text-espresso/60 max-w-2xl mx-auto">
           <span class="text-en">From payment protection to privacy settings and clear payout records, every part of the platform helps users feel secure.</span>
-          <span class="text-am">ከክፍያ ጥበቃ እስከ የግላዊነት ቅንብሮችና ግል የክያ መዝቦች።</span>
+          <span class="text-am">ከክያ ጥበ እስከ የግላዊነት ቅንብሮችና ግል የክያ መዝቦች</span>
         </p>
       </div>
 
@@ -1735,7 +1844,7 @@
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <h3 class="font-semibold text-espresso mb-1"><span class="text-en">Secure Payments</span><span class="text-am">ደህንነቱ የተጠበቀ ክፍያ</span></h3>
-          <p class="text-espresso/60 text-sm"><span class="text-en">Bank-grade encryption on all transactions</span><span class="text-am">በሁሉም ግብይቶች የባንክ ደረጃ ስጠራ</span></p>
+          <p class="text-espresso/60 text-sm"><span class="text-en">Bank-grade encryption on all transactions</span><span class="text-am">በሁሉም ግብይቶች የባንክ ረጃ ጠራ</span></p>
         </div>
         <div class="reveal reveal-delay-2 feature-card text-center">
           <div class="w-14 h-14 mx-auto bg-blue-50 rounded-2xl flex items-center justify-center mb-4">
@@ -1749,13 +1858,13 @@
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           </div>
           <h3 class="font-semibold text-espresso mb-1"><span class="text-en">Privacy Controls</span><span class="text-am">የግላነት ቁጥጥሮች</span></h3>
-          <p class="text-espresso/60 text-sm"><span class="text-en">You control who sees your list</span><span class="text-am">ዝርዝርዎን ማን እንደሚያይ ይቆጣጠሩ</span></p>
+          <p class="text-espresso/60 text-sm"><span class="text-en">You control who sees your list</span><span class="text-am">ዝርዝርዎን ማን እንደሚያይ ቆጣሩ</span></p>
         </div>
         <div class="reveal reveal-delay-4 feature-card text-center">
           <div class="w-14 h-14 mx-auto bg-amber-50 rounded-2xl flex items-center justify-center mb-4">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
           </div>
-          <h3 class="font-semibold text-espresso mb-1"><span class="text-en">Transparent Fees</span><span class="text-am">ግልጽ ክፍያዎች</span></h3>
+          <h3 class="font-semibold text-espresso mb-1"><span class="text-en">Transparent Fees</span><span class="text-am">ግል ክያዎች</span></h3>
           <p class="text-espresso/60 text-sm"><span class="text-en">No hidden charges, ever</span><span class="text-am">ድብቅ ክፍያች በፍጹም የሉም</span></p>
         </div>
       </div>
@@ -1772,7 +1881,7 @@
         </div>
         <h2 class="reveal font-display text-4xl sm:text-5xl font-semibold text-espresso">
           <span class="text-en">Start free. Grow with you.</span>
-          <span class="text-am">ነጻ ይጀምሩ። አረን እናድጋለን።</span>
+          <span class="text-am">ነጻ ይምሩ አረን እናጋለን</span>
         </h2>
       </div>
       <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -1796,7 +1905,7 @@
             </li>
             <li class="flex items-center gap-2 text-sm text-espresso/70">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C45D3E" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              <span class="text-en">Basic dashboard</span><span class="text-am">መሰረታዊ ዳሽርድ</span>
+              <span class="text-en">Basic dashboard</span><span class="text-am">መሰረዊ ዳሽርድ</span>
             </li>
             <li class="flex items-center gap-2 text-sm text-espresso/70">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C45D3E" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
@@ -1828,7 +1937,7 @@
             </li>
             <li class="flex items-center gap-2 text-sm text-white/90">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              <span class="text-en">Custom cover & colors</span><span class="text-am">ብጁ ሽፋንና ቀለሞች</span>
+              <span class="text-en">Custom cover & colors</span><span class="text-am">ብጁ ሽንና ቀለች</span>
             </li>
             <li class="flex items-center gap-2 text-sm text-white/90">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
@@ -1864,11 +1973,11 @@
             </li>
             <li class="flex items-center gap-2 text-sm text-espresso/70">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C45D3E" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              <span class="text-en">Multiple admins</span><span class="text-am">ብዙ አስተዳዳዎች</span>
+              <span class="text-en">Multiple admins</span><span class="text-am">ብዙ አስተዳዳች</span>
             </li>
             <li class="flex items-center gap-2 text-sm text-espresso/70">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C45D3E" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              <span class="text-en">Scheduled reminders</span><span class="text-am">የተቀጠሩ ማስታወሻዎች</span>
+              <span class="text-en">Scheduled reminders</span><span class="text-am">የተቀጠሩ ማስታወሻች</span>
             </li>
             <li class="flex items-center gap-2 text-sm text-espresso/70">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C45D3E" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
@@ -1894,7 +2003,7 @@
       <div class="text-center mb-12">
         <h2 class="reveal font-display text-4xl font-semibold text-espresso">
           <span class="text-en">Frequently Asked Questions</span>
-          <span class="text-am">በተደጋጋሚ የሚጠየ ጥያቄች</span>
+          <span class="text-am">በተደጋጋሚ የሚጠየ ያቄች</span>
         </h2>
       </div>
       <div class="space-y-4">
@@ -1904,7 +2013,7 @@
             <svg class="faq-icon w-5 h-5 text-muted transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="faq-content hidden px-6 pb-5 text-espresso/60">
-            <p><span class="text-en">Bene'nw is an Ethiopian gift registry and contribution platform designed for modern celebrations. It helps individuals and families create personalized lists, receive support securely, and share one simple link with loved ones across Ethiopia and beyond.</span><span class="text-am">Bene'nw ለዘመና ክብረ በዓሎች የተሰራ የኢትዮጵያ የስጦታ ዝርዝርና አስተዋፅኦ መድረ ነው።</span></p>
+            <p><span class="text-en">Bene'nw is an Ethiopian gift registry and contribution platform designed for modern celebrations. It helps individuals and families create personalized lists, receive support securely, and share one simple link with loved ones across Ethiopia and beyond.</span><span class="text-am">Bene'nw ለዘመና ክብ በዓሎች የተሰራ የትዮጵያ የስጦታ ርዝርና አስተዋፅኦ መድረ ነው።</span></p>
           </div>
         </div>
         <div class="reveal reveal-delay-2 bg-white rounded-2xl border border-border overflow-hidden">
@@ -1913,25 +2022,25 @@
             <svg class="faq-icon w-5 h-5 text-muted transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="faq-content hidden px-6 pb-5 text-espresso/60">
-            <p><span class="text-en">Yes! Our basic plan is completely free. You can create lists, share them, and receive contributions without any hidden fees.</span><span class="text-am">አዎ! መሰረታዊ እቅዳችን ሙሉ በሙሉ ነ ነው።</span></p>
+            <p><span class="text-en">Yes! Our basic plan is completely free. You can create lists, share them, and receive contributions without any hidden fees.</span><span class="text-am">አዎ! መሰረታ እቅዳችን ሙሉ በሙሉ ነ ው።</span></p>
           </div>
         </div>
         <div class="reveal reveal-delay-3 bg-white rounded-2xl border border-border overflow-hidden">
           <button class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center" onclick="toggleFaq(this)">
-            <span class="font-medium text-espresso"><span class="text-en">Which payment methods are supported?</span><span class="text-am">የትኞቹ የክፍያ ዴዎች ይደገሉ?</span></span>
+            <span class="font-medium text-espresso"><span class="text-en">Which payment methods are supported?</span><span class="text-am">የትኞቹ የክፍያ ዎች ይገሉ?</span></span>
             <svg class="faq-icon w-5 h-5 text-muted transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="faq-content hidden px-6 pb-5 text-espresso/60">
-            <p><span class="text-en">We support telebirr, CBE Birr, bank transfer, and international card payments for diaspora contributors. More payment options are being added regularly.</span><span class="text-am">ቴሌር፣ ንግድ ር፣ የባንክ ዝውውርና ለዲያስፖራ ዓለም አቀፍ ርድ ክያ እንደግፋለን።</span></p>
+            <p><span class="text-en">We support telebirr, CBE Birr, bank transfer, and international card payments for diaspora contributors. More payment options are being added regularly.</span><span class="text-am">ቴሌር፣ ንግድ ር፣ የባንክ ውውርና ዲያስፖራ ዓለም አቀፍ ድ ያ እንደግፋለን።</span></p>
           </div>
         </div>
         <div class="reveal reveal-delay-4 bg-white rounded-2xl border border-border overflow-hidden">
           <button class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center" onclick="toggleFaq(this)">
-            <span class="font-medium text-espresso"><span class="text-en">Can I add items from any store?</span><span class="text-am">ከማንኛውም ሱቅ ዕቃች ማከል እችላለሁ?</span></span>
+            <span class="font-medium text-espresso"><span class="text-en">Can I add items from any store?</span><span class="text-am">ከማንውም ሱቅ ዕቃች ከል እችለሁ?</span></span>
             <svg class="faq-icon w-5 h-5 text-muted transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="faq-content hidden px-6 pb-5 text-espresso/60">
-            <p><span class="text-en">Absolutely! You can add products from any online store by pasting the link, or create custom gift items with your own descriptions and prices.</span><span class="text-am">በእርግ! ከማንኛውም የመስመር ላይ ቅ ሊንክ በማጣበቅ ምርች ማከል ይችላሉ።</span></p>
+            <p><span class="text-en">Absolutely! You can add products from any online store by pasting the link, or create custom gift items with your own descriptions and prices.</span><span class="text-am">በእርግ! ከማንኛውም የመስመር ላይ ቅ ሊን በማጣበቅ ምርች ማከል ችላሉ።</span></p>
           </div>
         </div>
         <div class="reveal reveal-delay-5 bg-white rounded-2xl border border-border overflow-hidden">
@@ -1940,25 +2049,25 @@
             <svg class="faq-icon w-5 h-5 text-muted transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="faq-content hidden px-6 pb-5 text-espresso/60">
-            <p><span class="text-en">Contributions are collected securely and can be transferred to your registered bank account or mobile wallet. You can track everything from your dashboard.</span><span class="text-am">አስተዋፅኦዎች በደህና ይሰበሰባሉ እና ደ ባንክ ሂሳብ ወይም ሞባይል ዋሌት ይዛወራሉ።</span></p>
+            <p><span class="text-en">Contributions are collected securely and can be transferred to your registered bank account or mobile wallet. You can track everything from your dashboard.</span><span class="text-am">አስተዋፅኦዎች በደህና ይሰበሰባ እና ደ ባንክ ሂሳብ ወይም ሞባይል ዋሌት ይዛወራሉ።</span></p>
           </div>
         </div>
         <div class="reveal reveal-delay-6 bg-white rounded-2xl border border-border overflow-hidden">
           <button class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center" onclick="toggleFaq(this)">
-            <span class="font-medium text-espresso"><span class="text-en">Can people abroad contribute?</span><span class="text-am">ከውጭ ያሉ ዎች ማስተዋፅኦ ይችላሉ?</span></span>
+            <span class="font-medium text-espresso"><span class="text-en">Can people abroad contribute?</span><span class="text-am">ከው ያሉ ዎች ማስተዋፅኦ ይችላሉ?</span></span>
             <svg class="faq-icon w-5 h-5 text-muted transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="faq-content hidden px-6 pb-5 text-espresso/60">
-            <p><span class="text-en">Yes! Our platform supports international payments so diaspora friends and family can contribute easily from anywhere in the world.</span><span class="text-am">አዎ! ዓለም አቀፍ ክፍያዎችን እንደግፋለን ስለሆነ ዲያስፖራ ጓኞችና ቤተሰቦች ከማንኛውም ቦታ ማስተዋፅኦ ችላሉ።</span></p>
+            <p><span class="text-en">Yes! Our platform supports international payments so diaspora friends and family can contribute easily from anywhere in the world.</span><span class="text-am">አዎ! ዓለም አቀፍ ፍያዎችን እንደግለን ለሆነ ዲያስፖራ ኞችና ተሰቦች ማንኛውም ቦታ ማስተዋፅኦ ችላ።</span></p>
           </div>
         </div>
         <div class="reveal reveal-delay-7 bg-white rounded-2xl border border-border overflow-hidden">
           <button class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center" onclick="toggleFaq(this)">
-            <span class="font-medium text-espresso"><span class="text-en">Can more than one person manage a list?</span><span class="text-am">ከአንድ በላይ ሰው ርዝር ማስተዳደር ይችላል?</span></span>
+            <span class="font-medium text-espresso"><span class="text-en">Can more than one person manage a list?</span><span class="text-am">ከአንድ በላይ ሰው ዝር ማስተዳደር ይችላል?</span></span>
             <svg class="faq-icon w-5 h-5 text-muted transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="faq-content hidden px-6 pb-5 text-espresso/60">
-            <p><span class="text-en">Yes! With our Plus and Premium plans, you can add multiple admins (like couples or family members) to manage the list together.</span><span class="text-am">አዎ! በፕላስና ፕሪሚየም እቅዶች ብዙ አስተዳዳዎች (እን ጥንች ወይም ተሰብ) ርዝሩን አብረው ማስተዳደር ይችላሉ።</span></p>
+            <p><span class="text-en">Yes! With our Plus and Premium plans, you can add multiple admins (like couples or family members) to manage the list together.</span><span class="text-am">አዎ! በፕላስና ፕሪሚየም እቅዶች ብዙ አስተዳዳች (እን ንች ወይም ተሰብ) ርዝሩን አብረው ስተዳደር ይችላሉ።</span></p>
           </div>
         </div>
       </div>
@@ -1974,16 +2083,16 @@
       </div>
       <h2 class="reveal font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-espresso leading-tight">
         <span class="text-en">Ready to create your list?</span>
-        <span class="text-am">ዝርዝርዎን ለመፍጠር ዝግጁ ነዎት?</span>
+        <span class="text-am">ዝርዝርዎን ለመጠር ዝግጁ ዎት?</span>
       </h2>
       <p class="reveal reveal-delay-1 mt-6 text-xl text-espresso/60 max-w-2xl mx-auto">
         <span class="text-en">Join thousands of Ethiopian families celebrating with personalized gift registries. It's free to start.</span>
-        <span class="text-am">በግላዊ የስጦታ ዝርዝሮች ዎች የኢትዮጵያ ቤተሰቦች ር ይቀላቀሉ። መነሻ ነጻ ነው።</span>
+        <span class="text-am">በግላዊ የስጦታ ዝርዝሮች ዎች የኢትዮጵያ ቤተሰቦች ር ቀላቀሉ። መነሻ ነጻ ነው።</span>
       </p>
       <div class="reveal reveal-delay-2 mt-10 flex flex-col sm:flex-row gap-4 justify-center">
         <button onclick="openModal('signupModal')" class="btn-primary text-lg">
           <span class="text-en">Create Your List Today</span>
-          <span class="text-am">ዝርዝርዎን ዛሬ ይፍሩ</span>
+          <span class="text-am">ዝርዝርዎን ዛሬ ይፍ</span>
         </button>
         <button onclick="openModal('searchModal')" class="btn-secondary text-lg">
           <span class="text-en">Find a List</span>
@@ -2008,7 +2117,7 @@
           </div>
           <p class="text-white/50 text-sm max-w-sm mb-4">
             <span class="text-en">Bene'nw is an Ethiopian gift registry and contribution platform designed for modern celebrations. Create personalized lists, receive support securely, and share one simple link with loved ones.</span>
-            <span class="text-am">Bene'nw ለዘመናዊ ክብረ በዓሎች የተሰራ የኢትዮጵያ የስጦታ ዝርዝርና አስተዋፅኦ መድረ ነው።</span>
+            <span class="text-am">Bene'nw ለዘመናዊ ክብ በዓሎች የተሰራ የኢትዮጵያ የስጦታ ዝርዝርና አስተዋፅኦ መድረ ነው።</span>
           </p>
           <div class="flex gap-3">
             <a href="#" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-terracotta transition-colors" aria-label="Facebook">
@@ -2041,10 +2150,10 @@
         <div>
           <h4 class="font-semibold text-white mb-4"><span class="text-en">Support</span><span class="text-am">ድጋ</span></h4>
           <ul class="space-y-2 text-sm text-white/50">
-            <li><a href="#faq" class="hover:text-white transition-colors"><span class="text-en">FAQ</span><span class="text-am">ጥያቄ</span></a></li>
+            <li><a href="#faq" class="hover:text-white transition-colors"><span class="text-en">FAQ</span><span class="text-am">ጥያ</span></a></li>
             <li><button onclick="openModal('contactModal')" class="hover:text-white transition-colors text-left"><span class="text-en">Contact Us</span><span class="text-am">አግኙን</span></button></li>
             <li><a href="#" class="hover:text-white transition-colors"><span class="text-en">Privacy Policy</span><span class="text-am">የግላዊነት ፖሊ</span></a></li>
-            <li><a href="#" class="hover:text-white transition-colors"><span class="text-en">Terms of Service</span><span class="text-am">የአገልግሎት ደንብ</span></a></li>
+            <li><a href="#" class="hover:text-white transition-colors"><span class="text-en">Terms of Service</span><span class="text-am">የአገልግሎት ንብ</span></a></li>
           </ul>
           <div class="mt-6">
             <div class="lang-toggle" role="tablist" aria-label="Language selection">
@@ -2190,6 +2299,3 @@
   </script>
 </body>
 </html>
-
-
-
